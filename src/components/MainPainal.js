@@ -41,7 +41,7 @@ export default () => {
                 <CardBody>
                     <h2> Now open for ...</h2>
                     <h5><b>Open source community contribution!</b></h5>
-                    <p>I am new in open source contribution community. I want to be part of <b>OpenSource projects</b> from <b>scratch</b>. If you have an <b>problem to solving</b> and looking for a <b>contributor</b>, Please let me know. </p>
+                    <p>I am new to open source contribution community. I want to be part of <b>OpenSource projects</b> from <b>scratch</b>. If you have an <b>problem to solving</b> and looking for a <b>contributor</b>, Please let me know. </p>
                     <a className="btn btn-outline-warning" href="mailto:contact@sanjaypanda.com">Contact me</a>
                 </CardBody>
             </Card>
