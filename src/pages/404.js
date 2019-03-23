@@ -15,7 +15,7 @@ export default () => {
                 <Col sm="9" md="9" xl="8" className="ml-md-auto ml-sm-auto mr-sm-auto ml-xl-auto mr-xl-auto order-1 order-sm-1 p-3">
                 <Card >
                     <CardBody>
-                       <h1> Opps ! Page not found. </h1>
+                       <h1> Oops ! Page not found. </h1>
                        <Link to="/">Go to Home</Link>
                     </CardBody>
                 </Card>

@@ -12,8 +12,8 @@ export default () => {
                         <p>Software Developer and Expert in Developing Web Application using React and NodeJs. Passionate about all things web.</p>
                         <p>Feel free to <a href="mailto:contact@sanjaypanda.com">contact</a> me for any project that you might have in mind.</p>
                         <p className="social-link">
-                            <a href="https://www.linkedin.com/in/pandasanjay/" alt="linkedin" class="fa fa-linkedin"> </a>
-                            <a href="https://github.com/pandasanjay" alt="github" class="fa fa-git"> </a>
+                            <a href="https://www.linkedin.com/in/pandasanjay/" alt="linkedin" className="fa fa-linkedin"> </a>
+                            <a href="https://github.com/pandasanjay" alt="github" className="fa fa-git"> </a>
                         </p>
                     </div>
         </SidePanel>

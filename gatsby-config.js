@@ -25,7 +25,7 @@ module.exports = {
             "full-stack-dev": {
                 "header": "Full stack development",
                 "text": `
-                <p>Building a application is not hard, maintaining them takes time and placing a whole new feature is required big amount of testing efforts as well. There is also no right way to build a particular application, each application need to be refactored and grows over the time. My gole is to place the right automation testing which helps in CI/CD and make the release faster.</p>
+                <p>Building a application is not hard, maintaining them takes time and building a whole new feature is required significant amount of testing efforts as well. There is also no right way to build a particular application, each application need to be refactored and grows over the time. My goal is to place the right automation testing which helps in CI/CD and make the release faster.</p>
                 <p>Looking for someone to help to build your idea with your team and need to have these below skills: </p>
                 <ul>
                     <li> 5+ year of experience  </li>
@@ -41,7 +41,7 @@ module.exports = {
             "ui-application-development": { 
                 "header":"UI development",
                 "text": `
-                <p>This is the field of ideas and innovation comes together and presentation to user. if your UI is not looks good then, you will lose your customer. So great UI design and development with cross browser and responsive design, make end user accessible from any device. Easy and simple UI take your business to higher level </p>
+                <p>This is the field of ideas and innovation comes together and presented to the user. if your UI is not looks good then, you will lose your customer. So great UI design and development with cross browser and responsive design, make end user accessible from any device. Easy and simple UI take your business to higher level </p>
                 <p>Looking for someone best in UI development and should have:</p>
                 <ul>
                     <li> 5+ year of experience  </li>
@@ -56,8 +56,8 @@ module.exports = {
             "node-js-development": { 
                 "header":"NodeJs development",
                 "text": `
-                <p>Node is the server side of javacript. Very powerful, help developer to build tool, share and use. Creating a REST API is couple of line of code. </p>
-                <p>Looking for some build api for you and should have:</p>
+                <p>Node is the server side of javascript. Very powerful, help developer to build tool, share and use. Creating a REST API is couple of line of code. </p>
+                <p>Looking for someone build api for you and should have:</p>
                 <ul>
                     <li> 5+ year of experience  </li>
                     <li> REST API development </li>
@@ -76,8 +76,8 @@ module.exports = {
                 <p>Looking for someone to help to build a awesome application for your business and should have</p>
                 <ul>
                     <li> 5+ year of experience  </li>
-                    <li> Knowledge of concepts and related technology </li>
-                    <li> REST Api integration </p>
+                    <li> Clear concepts and related technology </li>
+                    <li> REST API integration </li>
                     <li> Authentication and Security </li>
                     <li> Build tools </li>
                     <li> Test automation </li>

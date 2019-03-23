@@ -32,7 +32,6 @@ exports.createPages = ({ graphql, actions }) => {
         if (result.errors) {
           reject(result.errors)
         }
-        console.log(result)
         Object.keys(result.data.site.siteMetadata.jobDetails).forEach((index) => {
           const path = index
           createPage({
