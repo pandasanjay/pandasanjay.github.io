@@ -16,7 +16,8 @@ function SEO({ description, lang, meta, keywords, title }) {
       query {
         site {
           siteMetadata {
-            title
+            title,
+            description
           }
         }
       }

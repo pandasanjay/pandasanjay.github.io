@@ -3,6 +3,7 @@ module.exports = {
     siteMetadata: {
         siteUrl: "https://sanjaypanda.com",
         title: `Portfolio`,
+        description: `Software Developer and Expert in Developing Web Application using React and NodeJs. Passionate about all things web.`,
         logos: {
             "react": "React.svg",
             "nodejs": "nodejs.svg",
