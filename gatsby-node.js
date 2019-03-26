@@ -38,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
             path,
             component: comingSoonTemplate,
             context: {
-              path,
+              slug: path,
               header: result.data.site.siteMetadata.jobDetails[index].header
             },
           })

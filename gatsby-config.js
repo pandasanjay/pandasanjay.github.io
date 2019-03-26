@@ -1,6 +1,7 @@
 // in gatsby-config.js
 module.exports = {
     siteMetadata: {
+        siteUrl: "https://sanjaypanda.com",
         title: `Portfolio`,
         logos: {
             "react": "React.svg",
@@ -119,5 +120,5 @@ module.exports = {
           siteSpeedSampleRate: 10,
           cookieDomain: "sanjaypanda.com",
         },
-      }]
+      }, `gatsby-plugin-sitemap`,'gatsby-plugin-robots-txt']
 }
