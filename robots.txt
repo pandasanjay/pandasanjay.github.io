@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://sanjaypanda.com/sitemap.xml
+Host: https://sanjaypanda.com
