@@ -109,5 +109,15 @@ module.exports = {
           icon: `static/favicon.ico`, // This path is relative to the root of the site.
           include_favicon: true, // Include favicon
         },
+      },{
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+          trackingId: "UA-136961245-1",
+          // Puts tracking script in the head instead of the body
+          head: true,
+          sampleRate: 5,
+          siteSpeedSampleRate: 10,
+          cookieDomain: "sanjaypanda.com",
+        },
       }]
 }
