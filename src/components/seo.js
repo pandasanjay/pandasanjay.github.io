@@ -10,14 +10,13 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
 
-
 function SEO({ description, lang, meta, keywords, title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title,
+            title
             description
           }
         }
@@ -53,7 +52,9 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:image`,
-          content: withPrefix("og-image-sanjay-profile.png"),
+          content:
+            "https://sanjaypanda.com" +
+            withPrefix("og-image-sanjay-profile.png"),
         },
         {
           name: `twitter:card`,
