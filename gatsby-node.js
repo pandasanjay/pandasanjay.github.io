@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require("path")
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -7,8 +7,9 @@ exports.createPages = ({ graphql, actions }) => {
     // Query for markdown nodes to use in creating pages.
     resolve(
       graphql(
-        `{
-          site{
+        `
+          {
+            site {
               siteMetadata {
                 jobDetails {
                   full_stack_dev {
@@ -32,14 +33,14 @@ exports.createPages = ({ graphql, actions }) => {
         if (result.errors) {
           reject(result.errors)
         }
-        Object.keys(result.data.site.siteMetadata.jobDetails).forEach((index) => {
+        Object.keys(result.data.site.siteMetadata.jobDetails).forEach(index => {
           const path = index
           createPage({
             path,
             component: comingSoonTemplate,
             context: {
               slug: path,
-              header: result.data.site.siteMetadata.jobDetails[index].header
+              header: result.data.site.siteMetadata.jobDetails[index].header,
             },
           })
         })
@@ -47,25 +48,3 @@ exports.createPages = ({ graphql, actions }) => {
     )
   })
 }
-
-// // Replacing '/' would result in empty string which is invalid
-// const replacePath = path => (path === `/` ? path : path.replace(/\/$/, ``))
-// // Implement the Gatsby API “onCreatePage”. This is
-// // called after every page is created.
-// exports.onCreatePage = ({ page, actions }) => {
-//   const { createPage, deletePage } = actions
-
-//   const oldPage = Object.assign({}, page)
-//   // Remove trailing slash unless page is /
-//   page.path = replacePath(page.path)
-//   if (page.path !== oldPage.path) {
-//     // Replace new page with old page
-//     deletePage(oldPage)
-//     createPage({
-//       ...page,
-//       context: {
-//         house: `Gryffindor`,
-//       },
-//     })
-//   }
-// }
