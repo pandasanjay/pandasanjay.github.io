@@ -34,6 +34,9 @@ exports.createPages = ({ graphql, actions }) => {
                   fields {
                     slug
                   }
+                  frontmatter {
+                    tags
+                  }
                 }
               }
             }
@@ -54,15 +57,46 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+        //Comming soon page for otheres
+        createPage({
+          path: "works",
+          component: comingSoonTemplate,
+          context: {
+            slug: "works",
+            header: "MY WORKS",
+          },
+        })
         result.data.allMarkdownRemark.edges.forEach(({ node }) => {
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/blog-post.jsx`),
             context: {
-              // Data passed to context is available
-              // in page queries as GraphQL variables.
               slug: node.fields.slug,
             },
+          })
+          const pageName = node.fields.slug.split("/")[1]
+          createPage({
+            path: pageName,
+            component: path.resolve(`./src/templates/page-list-post.jsx`),
+            context: {
+              pageName,
+              regex: `/${pageName}\//gi`,
+            },
+          })
+
+        })
+        //Tages pages
+        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+          (node.frontmatter.tags || "").split(",").forEach((tag) => {
+            const tagFinal = tag.trim().replace(/ /ig, "")
+            createPage({
+              path: `tags/${tagFinal}`,
+              component: path.resolve(`./src/templates/tags-list-post.jsx`),
+              context: {
+                tag,
+                regex: `/${tag}/gi`,
+              },
+            })
           })
         })
       })
@@ -79,5 +113,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
+
   }
 }
