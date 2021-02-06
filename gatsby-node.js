@@ -57,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
-        //Comming soon page for otheres
+        //Coming soon page for others
         createPage({
           path: "works",
           component: comingSoonTemplate,
@@ -74,6 +74,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: node.fields.slug,
             },
           })
+          console.log(node.fields.slug)
           const pageName = node.fields.slug.split("/")[1]
           createPage({
             path: pageName,
@@ -83,12 +84,11 @@ exports.createPages = ({ graphql, actions }) => {
               regex: `/${pageName}\//gi`,
             },
           })
-
         })
         //Tages pages
         result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-          (node.frontmatter.tags || "").split(",").forEach((tag) => {
-            const tagFinal = tag.trim().replace(/ /ig, "")
+          ;(node.frontmatter.tags || "").split(",").forEach(tag => {
+            const tagFinal = tag.trim().replace(/ /gi, "")
             createPage({
               path: `tags/${tagFinal}`,
               component: path.resolve(`./src/templates/tags-list-post.jsx`),
@@ -113,6 +113,5 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
-
   }
 }
