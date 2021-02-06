@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from '../components/seo'
 import PortfolioSideBar from "../components/PortfolioSideBar";
 import SkillsSideBar from "../components/SkillsSideBar";
-import MainPainal from "../components/MainPainal";
+import MainPanelV2 from "../components/MainPanelV2";
 
 export default () => {
     return (
@@ -12,7 +12,7 @@ export default () => {
             <SEO title="Home" keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
             <Row className="flex-xl-nowrap no-gutters" >
                 <PortfolioSideBar />
-                <MainPainal />
+                <MainPanelV2 />
                 <SkillsSideBar />
             </Row>
         </Layout>

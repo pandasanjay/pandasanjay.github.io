@@ -23,6 +23,9 @@ module.exports = {
       navsoft: "navsoft.png",
       maastrixsolutions: "maastrix.png",
     },
+    skillHighLights: {
+      
+    },
     jobDetails: {
       "full-stack-dev": {
         header: "Full stack development",
