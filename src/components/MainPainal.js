@@ -3,7 +3,7 @@ import { Col, CardDeck, Card, CardBody } from 'reactstrap';
 import { graphql, StaticQuery } from "gatsby"
 import JobDesc from "../components/JobDesc";
 
-export default () => {
+const MainPainal = () => {
 
   return (
     <StaticQuery
@@ -57,3 +57,4 @@ export default () => {
 
   )
 }
+export default MainPainal;

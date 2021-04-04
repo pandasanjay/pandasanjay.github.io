@@ -4,7 +4,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const comingSoonTemplate = path.resolve(`src/templates/ComingSoon.js`)
+    const comingSoonTemplate = path.resolve(`src/templates/ComingSoon.jsx`)
     // Query for markdown nodes to use in creating pages.
     resolve(
       graphql(

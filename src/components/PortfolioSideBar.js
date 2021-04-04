@@ -2,7 +2,7 @@ import React from 'react'
 import { withPrefix } from "gatsby"
 import SidePanel from "../components/SidePanel";
 import { Media } from 'reactstrap';
-export default () => {
+const PortfolioSideBar = () => {
     return (
         <SidePanel grid={{ md: 3, xl: 2 }} className="order-12 order-sm-12 order-md-1 order-xl-1 p-2 border-right border-secondary">
             <div className="text-center">
@@ -21,3 +21,5 @@ export default () => {
         </SidePanel>
     )
 }
+
+export default PortfolioSideBar;

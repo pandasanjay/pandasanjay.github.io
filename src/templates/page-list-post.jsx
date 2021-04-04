@@ -6,7 +6,7 @@ import PortfolioSideBar from '../components/PortfolioSideBar';
 import SkillsSideBar from '../components/SkillsSideBar';
 import PostLists from "../components/ListPosts"
 
-export default (props) => {
+const PageListPost =  (props) => {
   const { data, pathContext } = props
   const postList = data.allMarkdownRemark.edges;
 
@@ -53,3 +53,4 @@ export const query = graphql`
     }
   }
 `;
+export default PageListPost;

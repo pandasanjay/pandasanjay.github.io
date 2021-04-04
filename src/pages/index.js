@@ -6,7 +6,7 @@ import PortfolioSideBar from "../components/PortfolioSideBar";
 import SkillsSideBar from "../components/SkillsSideBar";
 import MainPainal from "../components/MainPainal";
 
-export default () => {
+const Index = () => {
     return (
         <Layout>
             <SEO title="Home" keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
@@ -18,3 +18,5 @@ export default () => {
         </Layout>
     )
 }
+
+export default Index;

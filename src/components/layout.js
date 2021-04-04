@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import { Container } from 'reactstrap';
 import Header from './Header'
 
-export default ({ children }) => (
+const Layout = ({ children }) => (
     <StaticQuery
         query={graphql`
         query {
@@ -24,3 +24,5 @@ export default ({ children }) => (
         )}
     />
 )
+
+export default Layout;

@@ -6,7 +6,7 @@ import PortfolioSideBar from '../components/PortfolioSideBar';
 import SkillsSideBar from '../components/SkillsSideBar';
 import PostLists from "../components/ListPosts"
 
-export default (props) => {
+ const TagListPost = (props) => {
   const { data, pathContext } = props
   const postList = data.allMarkdownRemark.edges;
 
@@ -29,6 +29,7 @@ export default (props) => {
     </Layout >
   );
 };
+
 export const query = graphql`
   query($regex: String!) {
     allMarkdownRemark(filter: {frontmatter: {tags: {regex: $regex}}}) {
@@ -53,3 +54,4 @@ export const query = graphql`
     }
   }
 `;
+export default TagListPost;

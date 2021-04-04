@@ -6,7 +6,7 @@ import PortfolioSideBar from '../components/PortfolioSideBar'
 import SkillsSideBar from '../components/SkillsSideBar'
 import { Link } from 'gatsby';
 
-export default ({ pageContext }) => {
+const ComingSoon = ({ pageContext }) => {
     return (
         <Layout>
             <SEO title="Not Found" keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
@@ -26,3 +26,4 @@ export default ({ pageContext }) => {
         </Layout>
     )
 }
+export default ComingSoon;

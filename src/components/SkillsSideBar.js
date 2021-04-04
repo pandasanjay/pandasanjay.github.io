@@ -2,7 +2,7 @@ import React from 'react'
 import { withPrefix, graphql, StaticQuery } from "gatsby"
 import SidePanel from "../components/SidePanel";
 
-export default () => {
+const SkillsSideBar = () => {
     
     return (
         <StaticQuery
@@ -55,3 +55,4 @@ export default () => {
         
     )
 }
+export default SkillsSideBar;

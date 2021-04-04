@@ -6,7 +6,7 @@ import PortfolioSideBar from '../components/PortfolioSideBar'
 import SkillsSideBar from '../components/SkillsSideBar'
 import { Link } from 'gatsby';
 
-export default () => {
+const PageNotFound = () => {
     return (
         <Layout>
             <SEO title="Not Found" keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
@@ -25,3 +25,5 @@ export default () => {
         </Layout>
     )
 }
+
+export default PageNotFound;

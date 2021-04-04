@@ -6,7 +6,7 @@ import PortfolioSideBar from '../components/PortfolioSideBar';
 import SkillsSideBar from '../components/SkillsSideBar';
 import SEO from '../components/seo'
 
-export default ({ data }) => {
+const BlogPost = ({ data }) => {
   const post = data.markdownRemark;
   return (
     <Layout>
@@ -47,3 +47,4 @@ export const query = graphql`
     }
   }
 `;
+export default BlogPost;
