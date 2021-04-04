@@ -1,4 +1,5 @@
 // in gatsby-config.js
+const path = require('path')
 module.exports = {
   siteMetadata: {
     siteUrl: "https://sanjaypanda.com",
@@ -128,5 +129,11 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     "gatsby-plugin-robots-txt",
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: { default: path.resolve('./src/components/layout-posts.js') },
+      },
+    },
   ],
 }

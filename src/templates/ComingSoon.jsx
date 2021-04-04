@@ -6,7 +6,7 @@ import PortfolioSideBar from "../components/PortfolioSideBar"
 import SkillsSideBar from "../components/SkillsSideBar"
 import { Link } from "gatsby"
 
-const PageNotFound = () => {
+const ComingSoon = ({ pageContext }) => {
   return (
     <Layout>
       <SEO
@@ -23,7 +23,8 @@ const PageNotFound = () => {
         >
           <Card>
             <CardBody>
-              <h1> Oops ! Page not found. </h1>
+              <h1> {pageContext.header} </h1>
+              <h3>Coming soon!</h3>
               <Link to="/">Go to Home</Link>
             </CardBody>
           </Card>
@@ -33,5 +34,4 @@ const PageNotFound = () => {
     </Layout>
   )
 }
-
-export default PageNotFound
+export default ComingSoon
