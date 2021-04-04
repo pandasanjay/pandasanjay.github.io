@@ -1,16 +1,23 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { Col, Row } from 'reactstrap';
-import Layout from '../components/layout';
-import PortfolioSideBar from '../components/PortfolioSideBar';
-import SkillsSideBar from '../components/SkillsSideBar';
-import SEO from '../components/seo'
+import React from "react"
+import { graphql } from "gatsby"
+import { Col, Row } from "reactstrap"
+import Layout from "../components/layout"
+import PortfolioSideBar from "../components/PortfolioSideBar"
+import SkillsSideBar from "../components/SkillsSideBar"
+import SEO from "../components/seo"
 
 const BlogPost = ({ data }) => {
-  const post = data.markdownRemark;
+  const post = data.mdx
   return (
     <Layout>
-      <SEO title={post.frontmatter.title} keywords={post.frontmatter.keywords && post.frontmatter.keywords.split(", ") || []} />
+      <SEO
+        title={post.frontmatter.title}
+        keywords={
+          (post.frontmatter.keywords &&
+            post.frontmatter.keywords.split(", ")) ||
+          []
+        }
+      />
       <Row className="flex-xl-nowrap no-gutters">
         <PortfolioSideBar />
         <Col
@@ -22,10 +29,17 @@ const BlogPost = ({ data }) => {
           <div>
             <h1>{post.frontmatter.title}</h1>
             {/* eslint-disable-next-line react/no-danger */}
-            <div className="blogpost-section" dangerouslySetInnerHTML={{ __html: post.html }} />
+            <div
+              className="blogpost-section"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
             <div>
               {(post.frontmatter.tags || "").split(",").map((data, index) => {
-                return <a key={index} href={`/tags/${data.replace(/ /ig, "")}`} ><span className="badge badge-secondary mr-2">{data}</span></a>
+                return (
+                  <a key={index} href={`/tags/${data.replace(/ /gi, "")}`}>
+                    <span className="badge badge-secondary mr-2">{data}</span>
+                  </a>
+                )
               })}
             </div>
           </div>
@@ -33,11 +47,11 @@ const BlogPost = ({ data }) => {
         <SkillsSideBar />
       </Row>
     </Layout>
-  );
-};
+  )
+}
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title
@@ -46,5 +60,5 @@ export const query = graphql`
       }
     }
   }
-`;
-export default BlogPost;
+`
+export default BlogPost

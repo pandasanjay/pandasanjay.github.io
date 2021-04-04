@@ -28,14 +28,15 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            allMarkdownRemark {
+            allMdx {
               edges {
                 node {
                   fields {
                     slug
                   }
                   frontmatter {
-                    tags
+                    tags,
+                    title
                   }
                 }
               }
@@ -66,27 +67,28 @@ exports.createPages = ({ graphql, actions }) => {
             header: "MY WORKS",
           },
         })
-        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-          createPage({
-            path: node.fields.slug,
-            component: path.resolve(`./src/templates/blog-post.jsx`),
-            context: {
-              slug: node.fields.slug,
-            },
-          })
+        result.data.allMdx.edges.forEach(({ node }) => {
+          // createPage({
+          //   path: node.fields.slug,
+          //   component: path.resolve(`./src/templates/blog-post.jsx`),
+          //   context: {
+          //     slug: node.fields.slug,
+          //   },
+          // })
+
           const pageName = node.fields.slug.split("/")[1]
           createPage({
             path: pageName,
             component: path.resolve(`./src/templates/page-list-post.jsx`),
             context: {
               pageName,
-              regex: `/${pageName}\//gi`,
+              regex: /${pageName}/gi,
             },
           })
-
         })
+
         //Tages pages
-        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        result.data.allMdx.edges.forEach(({ node }) => {
           (node.frontmatter.tags || "").split(",").forEach((tag) => {
             const tagFinal = tag.trim().replace(/ /ig, "")
             createPage({
@@ -106,7 +108,8 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  if (node.internal.type === `MarkdownRemark`) {
+  
+  if (node.internal.type === `Mdx`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
       node,

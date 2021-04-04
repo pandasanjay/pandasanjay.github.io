@@ -1,14 +1,14 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { Col, Row } from 'reactstrap';
-import Layout from '../components/layout';
-import PortfolioSideBar from '../components/PortfolioSideBar';
-import SkillsSideBar from '../components/SkillsSideBar';
+import React from "react"
+import { graphql } from "gatsby"
+import { Col, Row } from "reactstrap"
+import Layout from "../components/layout"
+import PortfolioSideBar from "../components/PortfolioSideBar"
+import SkillsSideBar from "../components/SkillsSideBar"
 import PostLists from "../components/ListPosts"
 
- const TagListPost = (props) => {
+const TagListPost = props => {
   const { data, pathContext } = props
-  const postList = data.allMarkdownRemark.edges;
+  const postList = data.allMdx.edges
 
   return (
     <Layout>
@@ -22,36 +22,35 @@ import PostLists from "../components/ListPosts"
         >
           <h1 className="mb-5">Tag: {pathContext.tag}</h1>
           <PostLists postLists={postList} />
-
         </Col>
         <SkillsSideBar />
       </Row>
-    </Layout >
-  );
-};
+    </Layout>
+  )
+}
 
 export const query = graphql`
   query($regex: String!) {
-    allMarkdownRemark(filter: {frontmatter: {tags: {regex: $regex}}}) {
-        edges {
-            node {
-              frontmatter {
-                tags
-                readtime
-                subtitle
-                auther
-                title
-              }
-              fields {
-                slug
-              }
-              headings {
-                value
-              }
-              id
-            }
+    allMdx(filter: { frontmatter: { tags: { regex: $regex } } }) {
+      edges {
+        node {
+          frontmatter {
+            tags
+            readtime
+            subtitle
+            auther
+            title
           }
+          fields {
+            slug
+          }
+          headings {
+            value
+          }
+          id
+        }
+      }
     }
   }
-`;
-export default TagListPost;
+`
+export default TagListPost
