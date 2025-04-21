@@ -1,10 +1,11 @@
-import React from 'react'
-import { Col, CardDeck, Card, CardBody } from 'reactstrap';
+import React, { lazy } from 'react'
 import { graphql, StaticQuery } from "gatsby"
 import JobDesc from "../components/JobDesc";
+import LazyComponent from "./LazyComponent";
+
+const Testimonials = lazy(() => import("../components/Testimonials"));
 
 export default () => {
-
   return (
     <StaticQuery
       query={graphql`
@@ -30,30 +31,29 @@ export default () => {
                   }
                 }
               }
-            
             }
         }
       `}
       render={data => {
         const jobDetails = data.site.siteMetadata.jobDetails;
-        return <Col sm="9" md="9" xl="8" className="ml-md-auto ml-sm-auto mr-sm-auto ml-xl-auto mr-xl-auto order-1 order-sm-1 p-3">
-          {/* <Card className="text-dark mb-3 shadow border-dark rounded-0">
-                <CardBody>
-                    <h2> Now open for ...</h2>
-                    <h5><b>Open source community contribution!</b></h5>
-                    <p>I am new to open source contribution community. I want to be part of <b>OpenSource projects</b> from <b>scratch</b>. If you have an <b>problem to solving</b> and looking for a <b>contributor</b>, Please let me know. </p>
-                    <a className="btn btn-outline-warning" href="mailto:contact@sanjaypanda.com">Contact me</a>
-                </CardBody>
-            </Card> */}
-          <JobDesc className="mb-3" {...jobDetails['full_stack_dev']} path="full_stack_dev" key={1} headerCss="bg-card-yellow text-light display-4" />
-          <CardDeck>
-            <JobDesc {...jobDetails['ui_application_development']} path="ui_application_development" key={2} headerCss="bg-card-blue text-light" />
-            <JobDesc {...jobDetails['node_js_development']} path="node_js_development" key={3} headerCss="bg-card-green text-light" />
-            <JobDesc {...jobDetails['spa_development']} path="spa_development" key={4} headerCss="bg-card-red text-light" />
-          </CardDeck>
-        </Col>
+        return (
+          <div className="w-full max-w-4xl mx-auto p-4">
+            <JobDesc className="mb-6" {...jobDetails['full_stack_dev']} path="full_stack_dev" key={1} headerCss="bg-accent text-white text-2xl md:text-3xl lg:text-4xl" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+              <JobDesc {...jobDetails['ui_application_development']} path="ui_application_development" key={2} headerCss="bg-blue-500 text-white" />
+              <JobDesc {...jobDetails['node_js_development']} path="node_js_development" key={3} headerCss="bg-green-500 text-white" />
+              <JobDesc {...jobDetails['spa_development']} path="spa_development" key={4} headerCss="bg-red-500 text-white" />
+            </div>
+            <div className="bg-white dark:bg-slate-800 shadow-lg rounded-lg mb-10">
+              <div className="p-6">
+                <LazyComponent>
+                  <Testimonials />
+                </LazyComponent>
+              </div>
+            </div>
+          </div>
+        )
       }}
     />
-
   )
 }

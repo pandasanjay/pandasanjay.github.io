@@ -1,7 +1,8 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
-import { Container } from 'reactstrap';
 import Header from './Header'
+import { ThemeProvider } from '../context/ThemeContext'
+import SkipLink from './SkipLink'
 
 export default ({ children }) => (
     <StaticQuery
@@ -15,12 +16,17 @@ export default ({ children }) => (
         }
         `}
         render={data => (
-            <div>
-                <Header headerText="About Gatsby" />
-                <Container fluid={true} className="p-0">
-                    {children}
-                </Container>
-            </div>
+            <ThemeProvider>
+                <div className="min-h-screen bg-slate-900">
+                    <SkipLink />
+                    <Header headerText="About Gatsby" />
+                    <div className="w-full mx-auto">
+                        <main id="main-content" tabIndex="-1">
+                            {children}
+                        </main>
+                    </div>
+                </div>
+            </ThemeProvider>
         )}
     />
 )

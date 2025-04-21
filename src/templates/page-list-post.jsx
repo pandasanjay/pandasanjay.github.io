@@ -1,55 +1,53 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Col, Row } from 'reactstrap';
 import Layout from '../components/layout';
 import PortfolioSideBar from '../components/PortfolioSideBar';
 import SkillsSideBar from '../components/SkillsSideBar';
 import PostLists from "../components/ListPosts"
 
-export default (props) => {
-  const { data, pathContext } = props
+const PageListPost = ({ data, pageContext }) => {
   const postList = data.allMarkdownRemark.edges;
+  const pageTitle = pageContext?.pageName || 'POSTS';
 
   return (
     <Layout>
-      <Row className="flex-xl-nowrap no-gutters">
+      <div className="flex flex-col lg:flex-row">
         <PortfolioSideBar />
-        <Col
-          sm="9"
-          md="9"
-          xl="8"
-          className="ml-md-auto ml-sm-auto mr-sm-auto ml-xl-auto mr-xl-auto order-1 order-sm-1 p-4"
-        >
-          <h1 className="mb-5">MY {pathContext.pageName.toUpperCase()}</h1>
+        <div className="w-full lg:w-2/3 mx-auto p-4">
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-white mb-8">MY {pageTitle.toUpperCase()}</h1>
           <PostLists postLists={postList} />
-
-        </Col>
+        </div>
         <SkillsSideBar />
-      </Row>
-    </Layout >
+      </div>
+    </Layout>
   );
 };
+
+export default PageListPost;
+
 export const query = graphql`
-  query($regex: String!) {
-    allMarkdownRemark(filter: {fields: {slug: {regex: $regex}}}) {
-        edges {
-            node {
-              frontmatter {
-                tags
-                readtime
-                subtitle
-                auther
-                title
-              }
-              fields {
-                slug
-              }
-              headings {
-                value
-              }
-              id
-            }
+  query {
+    allMarkdownRemark(
+      sort: { frontmatter: { title: ASC } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            subtitle
+            tags
+            readtime
+            auther
           }
+          fields {
+            slug
+          }
+          headings {
+            value
+          }
+          id
+        }
+      }
     }
   }
-`;
+`

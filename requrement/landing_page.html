@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjay Kumar Panda - DevRel | AI Explorer | Content Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Optional: Configure Tailwind accent color (Cyan)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: { // Define 'accent' color palette using Cyan
+                            DEFAULT: '#06b6d4', // cyan-500
+                            '50': '#ecfeff',
+                            '100': '#cffafe',
+                            '200': '#a5f3fc',
+                            '300': '#67e8f9',
+                            '400': '#22d3ee',
+                            '500': '#06b6d4',
+                            '600': '#0891b2',
+                            '700': '#0e7490',
+                            '800': '#155e75',
+                            '900': '#164e63',
+                            '950': '#083344'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Ensure sections have enough top padding for sticky nav offset */
+        section {
+            padding-top: 80px; /* Adjust based on nav height */
+            margin-top: -80px; /* Negative margin to counteract padding for scrollspy */
+        }
+        /* Style for active nav link (optional JS needed for dynamic activation) */
+        .nav-active {
+            font-weight: 600;
+            color: #06b6d4; /* Accent color */
+        }
+         /* Subtle background gradient or pattern (optional) */
+        .dark-bg-pattern {
+             background-color: #0f172a; /* slate-900 */
+        }
+         /* Styles for fade-in animation */
+         .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="dark-bg-pattern text-slate-300 antialiased">
+
+    <nav class="bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50 fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="#hero" class="text-xl font-bold text-white hover:text-accent transition duration-150 ease-in-out">Sanjay K. Panda</a>
+                </div>
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#mission" class="text-slate-300 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Mission</a>
+                    <a href="#pillars" class="text-slate-300 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Focus Areas</a>
+                    <a href="#work" class="text-slate-300 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Featured Work</a>
+                    <a href="#blog" class="text-slate-300 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Blog/Insights</a>
+                    <a href="#connect" class="text-slate-300 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">Connect</a>
+                </div>
+                <div class="md:hidden">
+                     <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-slate-800 border-t border-slate-700" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#mission" class="text-slate-300 hover:bg-slate-700 hover:text-accent block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Mission</a>
+                <a href="#pillars" class="text-slate-300 hover:bg-slate-700 hover:text-accent block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Focus Areas</a>
+                <a href="#work" class="text-slate-300 hover:bg-slate-700 hover:text-accent block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Featured Work</a>
+                <a href="#blog" class="text-slate-300 hover:bg-slate-700 hover:text-accent block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Blog/Insights</a>
+                <a href="#connect" class="text-slate-300 hover:bg-slate-700 hover:text-accent block px-3 py-2 rounded-md text-base font-medium transition duration-150 ease-in-out">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="pt-24 md:pt-32 lg:pt-40 pb-16 md:pb-20 lg:pb-24 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <img src="https://placehold.co/128x128/083344/67e8f9?text=SKP" alt="Sanjay Kumar Panda" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-6 border-4 border-accent/30 shadow-xl shadow-accent/10"
+                  onerror="this.onerror=null; this.src='https://placehold.co/128x128/164e63/cffafe?text=Profile+Pic';">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                Sanjay Kumar Panda: <br class="md:hidden"><span class="text-accent">Empowering Developers</span>, Exploring AI, Creating Clarity
+            </h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-slate-300 mb-8">
+                Leveraging 12+ years of engineering to demystify AI & Cloud technologies, foster developer communities, and create insightful technical content.
+            </p>
+            <div class="flex justify-center items-center space-x-5 text-slate-400">
+                <a href="https://sanjaypanda.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="Personal Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://github.com/your-github-username/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                 <a href="https://twitter.com/your-twitter-handle" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.422.724-.668 1.566-.668 2.457 0 1.488.76 2.8 1.918 3.569-.706-.022-1.368-.216-1.947-.538v.057c0 2.078 1.479 3.814 3.445 4.21-.36.098-.74.15-1.128.15-.277 0-.545-.027-.808-.077.546 1.698 2.129 2.94 4.01 3.004-1.47 1.146-3.32 1.828-5.33 1.828-.347 0-.688-.02-1.023-.06C3.44 20.29 5.688 21 8.125 21c9.748 0 15.08-8.06 15.08-15.08 0-.23 0-.455-.015-.68.995-.718 1.87-1.62 2.565-2.678z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="mission" class="py-16 md:py-20 lg:py-24 bg-slate-950 fade-in-section">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">My Mission</h2>
+            <p class="text-xl text-slate-300 leading-relaxed">
+                To equip software engineers with the <span class="text-accent font-medium">knowledge and practices</span> to efficiently deliver <span class="text-accent font-medium">high-quality AI applications</span>, leveraging <span class="text-accent font-medium">cloud technologies</span> and <span class="text-accent font-medium">effective software lifecycle management</span>.
+            </p>
+        </div>
+    </section>
+
+    <section id="pillars" class="py-16 md:py-20 lg:py-24 bg-slate-900 fade-in-section">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 md:mb-16">My Focus Areas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-accent/30 transition-all duration-300 hover:scale-[1.03]">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-accent/10 text-accent mb-4 mx-auto ring-2 ring-accent/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-center">Developer Advocacy</h3>
+                    <p class="text-slate-400 text-center text-sm">
+                        Building communities, creating tutorials, delivering talks & workshops, gathering feedback, and championing developer needs.
+                    </p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-accent/30 transition-all duration-300 hover:scale-[1.03]">
+                     <div class="flex items-center justify-center h-12 w-12 rounded-full bg-accent/10 text-accent mb-4 mx-auto ring-2 ring-accent/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a4 4 0 00-5.656 0M15 12a3 3 0 11-6 0 3 3 0 016 0zm6 3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-center">AI Exploration</h3>
+                    <p class="text-slate-400 text-center text-sm">
+                        Actively learning and experimenting with AI/ML, focusing on areas like LLMs, fine-tuning, and practical applications. Sharing my learning journey.
+                    </p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-accent/30 transition-all duration-300 hover:scale-[1.03]">
+                     <div class="flex items-center justify-center h-12 w-12 rounded-full bg-accent/10 text-accent mb-4 mx-auto ring-2 ring-accent/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-center">Content Creation</h3>
+                    <p class="text-slate-400 text-center text-sm">
+                        Crafting clear and engaging technical content: Blog posts, articles, videos, and talks covering AI, Cloud, Data Engineering, and DevRel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-16 md:py-20 lg:py-24 bg-slate-950 fade-in-section">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 md:mb-16">Featured Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="relative bg-slate-900 rounded-xl overflow-hidden group transition-all duration-300 hover:scale-[1.03] shadow-lg hover:shadow-accent/20">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img src="https://placehold.co/600x338/083344/22d3ee?text=AI+Blog+Post" alt="Blog Post Thumbnail" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x338/1e293b/64748b?text=Image+Not+Found';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-xs font-semibold text-accent uppercase tracking-widest">Content Creation</span>
+                        <h3 class="text-lg font-semibold text-white mt-1 mb-2 group-hover:text-accent transition-colors duration-200">Demystifying Fine-Tuning LLMs</h3>
+                        <a href="#" class="text-accent-300 hover:text-white font-medium text-sm inline-flex items-center mt-2">
+                            Read Article
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative bg-slate-900 rounded-xl overflow-hidden group transition-all duration-300 hover:scale-[1.03] shadow-lg hover:shadow-accent/20">
+                     <div class="aspect-w-16 aspect-h-9">
+                        <img src="https://placehold.co/600x338/155e75/a5f3fc?text=GCP+Talk" alt="Talk Thumbnail" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x338/1e293b/64748b?text=Image+Not+Found';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-xs font-semibold text-accent uppercase tracking-widest">Developer Advocacy</span>
+                        <h3 class="text-lg font-semibold text-white mt-1 mb-2 group-hover:text-accent transition-colors duration-200">Talk: Scalable Data Pipelines on GCP</h3>
+                        <a href="#" class="text-accent-300 hover:text-white font-medium text-sm inline-flex items-center mt-2">
+                            View Slides
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative bg-slate-900 rounded-xl overflow-hidden group transition-all duration-300 hover:scale-[1.03] shadow-lg hover:shadow-accent/20">
+                     <div class="aspect-w-16 aspect-h-9">
+                        <img src="https://placehold.co/600x338/164e63/ecfeff?text=AI+Experiment" alt="AI Project Visual" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                              onerror="this.onerror=null; this.src='https://placehold.co/600x338/1e293b/64748b?text=Image+Not+Found';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                         <span class="text-xs font-semibold text-accent uppercase tracking-widest">AI Exploration</span>
+                        <h3 class="text-lg font-semibold text-white mt-1 mb-2 group-hover:text-accent transition-colors duration-200">Project: Sentiment Analyzer</h3>
+                        <a href="#" class="text-accent-300 hover:text-white font-medium text-sm inline-flex items-center mt-2">
+                            View on GitHub
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="blog" class="py-16 md:py-20 lg:py-24 bg-slate-900 fade-in-section">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 md:mb-16">Latest Insights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 hover:border-accent/50 transition-colors duration-300 group">
+                    <span class="text-xs text-slate-400 uppercase">April 19, 2025 • AI</span>
+                    <h3 class="text-lg font-semibold text-white mt-2 mb-3 group-hover:text-accent transition-colors duration-200">My First Steps with Generative AI</h3>
+                    <p class="text-slate-400 text-sm mb-4">Sharing initial thoughts and resources from my exploration into the world of generative models...</p>
+                    <a href="#" class="text-accent hover:text-accent-300 font-medium text-sm inline-flex items-center">Read More <span class="ml-1 transition-transform duration-200 group-hover:translate-x-1">&rarr;</span></a> </div>
+                 <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 hover:border-accent/50 transition-colors duration-300 group">
+                    <span class="text-xs text-slate-400 uppercase">April 10, 2025 • DevRel</span>
+                    <h3 class="text-lg font-semibold text-white mt-2 mb-3 group-hover:text-accent transition-colors duration-200">The Power of Clear Technical Documentation</h3>
+                     <p class="text-slate-400 text-sm mb-4">Why investing in good documentation is crucial for developer experience and community growth...</p>
+                    <a href="#" class="text-accent hover:text-accent-300 font-medium text-sm inline-flex items-center">Read More <span class="ml-1 transition-transform duration-200 group-hover:translate-x-1">&rarr;</span></a> </div>
+                 <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 hover:border-accent/50 transition-colors duration-300 group">
+                     <span class="text-xs text-slate-400 uppercase">March 28, 2025 • Cloud</span>
+                    <h3 class="text-lg font-semibold text-white mt-2 mb-3 group-hover:text-accent transition-colors duration-200">Cost Optimization Tips for GCP Dataflow</h3>
+                     <p class="text-slate-400 text-sm mb-4">Practical advice based on experience for managing costs effectively when using Google Cloud Dataflow...</p>
+                    <a href="#" class="text-accent hover:text-accent-300 font-medium text-sm inline-flex items-center">Read More <span class="ml-1 transition-transform duration-200 group-hover:translate-x-1">&rarr;</span></a> </div>
+            </div>
+            <div class="text-center mt-12">
+                 <a href="https://sanjaypanda.com" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent text-slate-900 font-medium py-2.5 px-6 rounded-md hover:bg-accent-300 transition duration-150 ease-in-out hover:scale-105 transform">
+                    Visit My Blog
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="connect" class="py-16 md:py-20 lg:py-24 bg-slate-950 fade-in-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Let's Connect</h2>
+            <p class="text-lg text-slate-300 mb-8">
+                Follow my journey, read my content, or reach out for collaboration and speaking opportunities.
+            </p>
+            <div class="flex justify-center items-center space-x-6 mb-8 text-slate-400">
+                 <a href="https://sanjaypanda.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="Personal Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://github.com/your-github-username/" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="GitHub">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                 <a href="https://twitter.com/your-twitter-handle" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition duration-150 ease-in-out" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.422.724-.668 1.566-.668 2.457 0 1.488.76 2.8 1.918 3.569-.706-.022-1.368-.216-1.947-.538v.057c0 2.078 1.479 3.814 3.445 4.21-.36.098-.74.15-1.128.15-.277 0-.545-.027-.808-.077.546 1.698 2.129 2.94 4.01 3.004-1.47 1.146-3.32 1.828-5.33 1.828-.347 0-.688-.02-1.023-.06C3.44 20.29 5.688 21 8.125 21c9.748 0 15.08-8.06 15.08-15.08 0-.23 0-.455-.015-.68.995-.718 1.87-1.62 2.565-2.678z"/></svg>
+                </a>
+            </div>
+             <a href="mailto:panda.sanjay18@gmail.com" class="text-accent hover:text-accent-300 font-medium transition-colors duration-200">
+                panda.sanjay18@gmail.com
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-500 py-8 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; <span id="currentYear2"></span> Sanjay Kumar Panda. All rights reserved.</p>
+            <p class="mt-1">Design inspired by simplicity and the future.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear2').textContent = new Date().getFullYear();
+
+        // Simple smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                 // If mobile menu is open, close it after clicking a link
+                 // Check if mobileMenuButton exists before trying to access it
+                 if (typeof mobileMenuButton !== 'undefined' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenuButton.click(); // Simulate click to close
+                 }
+                if(targetElement) {
+                    // Calculate offset dynamically based on nav height if needed
+                    const navHeight = document.querySelector('nav')?.offsetHeight || 0;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                    window.scrollTo({
+                         top: offsetPosition,
+                         behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Basic Mobile Menu Toggle
+        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            const openIcon = mobileMenuButton.querySelector('svg.block'); // More specific selector
+            const closeIcon = mobileMenuButton.querySelector('svg.hidden'); // More specific selector
+
+            mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                // Toggle icons correctly
+                openIcon?.classList.toggle('hidden');
+                openIcon?.classList.toggle('block');
+                closeIcon?.classList.toggle('hidden');
+                closeIcon?.classList.toggle('block');
+            });
+        }
+
+
+        // Intersection Observer for fade-in effect
+        const sectionsToFade = document.querySelectorAll('.fade-in-section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Trigger when 10% is visible
+        };
+
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: unobserve after animation
+                    // observer.unobserve(entry.target);
+                }
+                // Optional: Reset if it scrolls out of view
+                // else {
+                //     entry.target.classList.remove('is-visible');
+                // }
+            });
+        }, observerOptions);
+
+        sectionsToFade.forEach(section => {
+            fadeInObserver.observe(section);
+        });
+
+    </script>
+
+</body>
+</html>

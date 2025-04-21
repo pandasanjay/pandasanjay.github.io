@@ -7,10 +7,10 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, image, type = 'website' }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -18,6 +18,14 @@ function SEO({ description, lang, meta, keywords, title }) {
           siteMetadata {
             title
             description
+            author
+            siteUrl
+            image
+            social {
+              twitter
+              linkedin
+              github
+            }
           }
         }
       }
@@ -25,6 +33,20 @@ function SEO({ description, lang, meta, keywords, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const metaImage = image ? `${site.siteMetadata.siteUrl}${image}` : `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": site.siteMetadata.author,
+    "url": site.siteMetadata.siteUrl,
+    "sameAs": [
+      site.siteMetadata.social.linkedin,
+      site.siteMetadata.social.github,
+    ],
+    "jobTitle": "Full Stack Developer",
+    "image": metaImage,
+  }
 
   return (
     <Helmet
@@ -48,21 +70,19 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: type,
         },
         {
           property: `og:image`,
-          content:
-            "https://sanjaypanda.com" +
-            withPrefix("og-image-sanjay-profile.png"),
+          content: metaImage,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.social.twitter || site.siteMetadata.author,
         },
         {
           name: `twitter:title`,
@@ -72,6 +92,10 @@ function SEO({ description, lang, meta, keywords, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `twitter:image`,
+          content: metaImage,
+        }
       ]
         .concat(
           keywords.length > 0
@@ -82,7 +106,12 @@ function SEO({ description, lang, meta, keywords, title }) {
             : []
         )
         .concat(meta)}
-    />
+    >
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
+      <link rel="canonical" href={`${site.siteMetadata.siteUrl}${withPrefix('/')}`} />
+    </Helmet>
   )
 }
 
@@ -90,14 +119,17 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   keywords: [],
+  description: ``,
 }
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.array,
+  meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  type: PropTypes.string,
 }
 
 export default SEO

@@ -1,55 +1,55 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Col, Row } from 'reactstrap';
 import Layout from '../components/layout';
 import PortfolioSideBar from '../components/PortfolioSideBar';
 import SkillsSideBar from '../components/SkillsSideBar';
-import PostLists from "../components/ListPosts"
+import PostLists from "../components/ListPosts";
+import SEO from '../components/seo';
 
-export default (props) => {
-  const { data, pathContext } = props
+const TagsListPost = ({ data, pageContext }) => {
   const postList = data.allMarkdownRemark.edges;
 
   return (
     <Layout>
-      <Row className="flex-xl-nowrap no-gutters">
+      <SEO title={`Posts tagged with ${pageContext.tag}`} keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
+      <div className="flex flex-col lg:flex-row">
         <PortfolioSideBar />
-        <Col
-          sm="9"
-          md="9"
-          xl="8"
-          className="ml-md-auto ml-sm-auto mr-sm-auto ml-xl-auto mr-xl-auto order-1 order-sm-1 p-4"
-        >
-          <h1 className="mb-5">Tag: {pathContext.tag}</h1>
+        <div className="w-full lg:w-2/3 mx-auto p-4">
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-white mb-8">Posts tagged with "{pageContext.tag}"</h1>
           <PostLists postLists={postList} />
-
-        </Col>
+        </div>
         <SkillsSideBar />
-      </Row>
-    </Layout >
+      </div>
+    </Layout>
   );
 };
+
+export default TagsListPost;
+
 export const query = graphql`
-  query($regex: String!) {
-    allMarkdownRemark(filter: {frontmatter: {tags: {regex: $regex}}}) {
-        edges {
-            node {
-              frontmatter {
-                tags
-                readtime
-                subtitle
-                auther
-                title
-              }
-              fields {
-                slug
-              }
-              headings {
-                value
-              }
-              id
+  query($tag: String!) {
+    allMarkdownRemark(filter: { frontmatter: { tags: { in: [$tag] } } }) {
+      edges {
+        node {
+          frontmatter {
+            tags
+            readtime
+            subtitle
+            auther
+            title
+            date(formatString: "MMMM DD, YYYY")
+            description
+          }
+          fields {
+            slug
+            readingTime {
+              text
             }
           }
+          excerpt
+          id
+        }
+      }
     }
   }
 `;

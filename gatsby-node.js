@@ -1,11 +1,39 @@
 const path = require("path")
 const { createFilePath } = require(`gatsby-source-filesystem`)
+
+// Explicitly define the MarkdownRemark frontmatter schema
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+      fields: Fields
+    }
+    type Frontmatter {
+      title: String!
+      date: Date @dateformat
+      tags: [String]
+      description: String
+      subtitle: String
+      auther: String
+      readtime: String
+      published: Boolean
+    }
+    type Fields {
+      slug: String!
+      readingTime: ReadingTime
+    }
+    type ReadingTime {
+        text: String
+    }
+  `
+  createTypes(typeDefs)
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const comingSoonTemplate = path.resolve(`src/templates/ComingSoon.js`)
-    // Query for markdown nodes to use in creating pages.
     resolve(
       graphql(
         `
@@ -26,16 +54,29 @@ exports.createPages = ({ graphql, actions }) => {
                     header
                   }
                 }
+                projects {
+                  title
+                }
               }
             }
-            allMarkdownRemark {
+            allMarkdownRemark(
+              sort: { fields: [frontmatter___date], order: DESC }
+              filter: { frontmatter: { published: { ne: false } } } # <-- Add this filter
+              limit: 1000
+            ) {
               edges {
                 node {
                   fields {
                     slug
+                    readingTime {
+                      text
+                    }
                   }
                   frontmatter {
+                    title
+                    date
                     tags
+                    published # Query published status if needed elsewhere, though not strictly necessary for the filter
                   }
                 }
               }
@@ -44,59 +85,81 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
+          console.error("GraphQL Errors:", result.errors);
           reject(result.errors)
+          return;
         }
-        Object.keys(result.data.site.siteMetadata.jobDetails).forEach(index => {
-          const path = index
+
+        if (!result.data || !result.data.site) {
+          const errorMsg = "Site data not found in GraphQL result.";
+          console.error(errorMsg, result.data);
+          reject(new Error(errorMsg));
+          return;
+        }
+
+        if (result.data.site.siteMetadata && result.data.site.siteMetadata.jobDetails) {
+          Object.keys(result.data.site.siteMetadata.jobDetails).forEach(index => {
+            const pagePath = index
+            createPage({
+              path: pagePath,
+              component: path.resolve(`src/templates/ComingSoon.js`),
+              context: {
+                slug: pagePath,
+                header: result.data.site.siteMetadata.jobDetails[index].header,
+              },
+            })
+          })
+        } else {
+          console.warn("jobDetails not found in siteMetadata.");
+        }
+
+        const projects = result.data.site.siteMetadata?.projects || [];
+        projects.forEach(project => {
+          const slug = project.title.toLowerCase().replace(/\s+/g, '-')
           createPage({
-            path,
-            component: comingSoonTemplate,
+            path: `projects/${slug}`,
+            component: path.resolve(`src/templates/project-detail.jsx`),
             context: {
-              slug: path,
-              header: result.data.site.siteMetadata.jobDetails[index].header,
+              title: project.title,
             },
           })
         })
-        //Comming soon page for otheres
-        createPage({
-          path: "works",
-          component: comingSoonTemplate,
-          context: {
-            slug: "works",
-            header: "MY WORKS",
-          },
-        })
-        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+
+        const posts = result.data.allMarkdownRemark?.edges || [];
+        posts.forEach(({ node }, index) => {
+          const previous = index === posts.length - 1 ? null : posts[index + 1].node
+          const next = index === 0 ? null : posts[index - 1].node
+
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/blog-post.jsx`),
             context: {
               slug: node.fields.slug,
+              previous,
+              next,
             },
           })
-          const pageName = node.fields.slug.split("/")[1]
-          createPage({
-            path: pageName,
-            component: path.resolve(`./src/templates/page-list-post.jsx`),
-            context: {
-              pageName,
-              regex: `/${pageName}\//gi`,
-            },
-          })
-
         })
-        //Tages pages
-        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-          (node.frontmatter.tags || "").split(",").forEach((tag) => {
-            const tagFinal = tag.trim().replace(/ /ig, "")
-            createPage({
-              path: `tags/${tagFinal}`,
-              component: path.resolve(`./src/templates/tags-list-post.jsx`),
-              context: {
-                tag,
-                regex: `/${tag}/gi`,
-              },
-            })
+
+        const tagPosts = result.data.allMarkdownRemark?.edges || [];
+        tagPosts.forEach(({ node }) => {
+          // Ensure tags is treated as an array, even if it's a single string or null/undefined
+          const tags = Array.isArray(node.frontmatter.tags) 
+            ? node.frontmatter.tags 
+            : (node.frontmatter.tags || "").split(",").map(t => t.trim()).filter(Boolean);
+
+          tags.forEach((tag) => {
+            // Check if tag is valid before creating page
+            if (tag) {
+              const tagPath = tag.toLowerCase().replace(/\s+/g, '-'); // Create a URL-friendly path
+              createPage({
+                path: `tags/${tagPath}`,
+                component: path.resolve(`./src/templates/tags-list-post.jsx`),
+                context: {
+                  tag: tag, // Pass the actual tag string
+                },
+              })
+            }
           })
         })
       })
@@ -113,6 +176,5 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
-
   }
 }
