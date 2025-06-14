@@ -1,65 +1,104 @@
-// $blue:    #007bff;
-// $indigo:  #6610f2;
-// $purple:  #6f42c1;
-// $pink:    #e83e8c;
-// $red:     #dc3545;
-// $orange:  #fd7e14;
-// $yellow:  #ffc107;
-// $green:   #28a745;
-// $teal:    #20c997;
-// $cyan:    #17a2b8;
-// $white: #fff;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// $theme-colors: (
-//     "primary": #0074d9,
-//     "danger": #ff4136,
-//     "secondary":#F5F5F5,
-//     "light": #F5F5F5,
-//     "dark" : #020270
-// );
-// //Global
-// $spacer: 2rem;
-// $enable-rounded: false;
-// //Navbar
-// $navbar-padding-y: 0rem;
-// // $navbar-dark-color:        $white;
-// // $navbar-dark-active-color: #020270;
+/* Apply Inter font globally and set default light theme background */
+body {
+  font-family: 'Inter', sans-serif;
+  /* Default text color removed, let prose/components handle it */
+  @apply bg-white transition-colors duration-200;
+}
 
-// //Body
-// $body-bg:                  $white;
-// $body-color:               #020270;
+/* Light mode styles */
+html:not(.dark) body {
+  background-color: #ffffff;
+  color: #334155; /* slate-700 */
+}
 
-/*! `Fresca` Bootstrap 4 theme */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-@import url(https://fonts.googleapis.com/css?family=Muli:200,300,400,700);
-$headings-font-family:Muli;
+/* Dark background pattern */
+body.dark-bg-pattern {
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(#334155 0.5px, transparent 0.5px),
+    radial-gradient(#334155 0.5px, #0f172a 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
 
-$enable-grid-classes:true;
-$primary:#07689F;
-$secondary:#C9D6DF;
-$success:#11D3BC;
-$danger:#F67280;
-$info:#A2D5F2;
-$warning:#FF7E67;
-$light:#FAFAFA;
-$dark:#07689F;
-$card-title-bg-color-yellow: #7f773d;
-$card-title-bg-color-blue: #379ad5;
-$card-title-bg-color-green: #42893f;
-$card-title-bg-color-green-deep: #528078;
-$card-title-bg-color-red: #ad6e8b ;
-$theme-colors: (
-  "card-yellow": $card-title-bg-color-yellow,
-  "card-blue":$card-title-bg-color-blue,
-  "card-green":$card-title-bg-color-green,
-  "card-green-deep": $card-title-bg-color-green-deep,
-  "card-red":$card-title-bg-color-red
-);
-//$navbar-padding-y: 0rem;
-//Custom
-@import "./index.scss";
-@import "./SidePanel.scss";
-@import "./blogPost.scss";
-@import "node_modules/bootstrap/scss/bootstrap";
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Skip link accessibility styles */
+.skip-link {
+  @apply absolute top-0 left-0 z-50 px-4 py-2 bg-accent text-white font-medium rounded-br-md transform -translate-y-full opacity-0 transition-all duration-200 focus:translate-y-0 focus:opacity-100;
+  /* Ensure it's above all other content when focused */
+  z-index: 9999;
+}
+
+/* Accent color variables for consistent theme */
+:root {
+  --color-accent: #06b6d4;
+  --color-accent-hover: #22d3ee;
+}
+
+/* Animations for section transitions */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fix for sticky header and section scrolling */
+section {
+  scroll-margin-top: 4rem;
+  padding-top: 80px;
+  margin-top: -80px;
+}
+
+/* Custom button styles */
+.btn-accent {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-accent:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(6, 182, 212, 0.2);
+}
+
+/* Card hover effects */
+.hover-card-effect {
+  transition: all 0.3s ease;
+}
+
+.hover-card-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.1);
+}
+
+/* Image hover zoom effect */
+.img-zoom-effect {
+  overflow: hidden;
+}
+
+.img-zoom-effect img {
+  transition: transform 0.3s ease;
+}
+
+.img-zoom-effect:hover img {
+  transform: scale(1.05);
+}
 
 

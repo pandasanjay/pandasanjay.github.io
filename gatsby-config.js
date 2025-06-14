@@ -88,10 +88,148 @@ module.exports = {
                 `,
       },
     },
+    testimonials: [
+      {
+        name: "John Smith",
+        title: "Tech Lead at TechCorp",
+        text: "Sanjay is an exceptional full-stack developer who consistently delivers high-quality solutions. His expertise in React and Node.js is impressive.",
+        image: "john-smith.jpg"
+      },
+      {
+        name: "Sarah Johnson",
+        title: "Engineering Manager",
+        text: "Working with Sanjay was a pleasure. His deep understanding of data pipelines and cloud architecture helped us optimize our entire workflow.",
+        image: "sarah-johnson.jpg"
+      },
+      {
+        name: "Mike Chen",
+        title: "CTO at StartupX",
+        text: "Sanjay's contributions to our project were invaluable. His ability to architect scalable solutions and mentor team members sets him apart.",
+        image: "mike-chen.jpg"
+      }
+    ],
+    projects: [
+      {
+        title: "Enterprise Data Pipeline",
+        description: "Built a scalable data pipeline processing millions of records daily",
+        category: "Data Engineering",
+        tech: ["Apache Kafka", "Node.js", "AWS", "MongoDB"],
+        challenges: [
+          "Handling large-scale real-time data processing",
+          "Ensuring data consistency across multiple systems",
+          "Implementing robust error handling and recovery"
+        ],
+        solutions: [
+          "Implemented stream processing with Kafka",
+          "Designed a microservices architecture for scalability",
+          "Created automated monitoring and alerting system"
+        ],
+        outcomes: [
+          "Reduced processing time by 60%",
+          "Improved data accuracy to 99.9%",
+          "Decreased system downtime by 80%"
+        ],
+        image: "data-pipeline.jpg",
+        github: "https://github.com/username/project",
+        demo: "https://demo.example.com"
+      },
+      {
+        title: "Cloud-Native Analytics Platform",
+        description: "Developed a cloud-native platform for real-time analytics",
+        category: "Full Stack",
+        tech: ["React", "Node.js", "GraphQL", "AWS Lambda"],
+        challenges: [
+          "Real-time data visualization",
+          "Complex state management",
+          "High concurrent user load"
+        ],
+        solutions: [
+          "Implemented WebSocket for real-time updates",
+          "Used GraphQL for efficient data fetching",
+          "Deployed serverless architecture"
+        ],
+        outcomes: [
+          "Supported 10k concurrent users",
+          "Achieved sub-second response times",
+          "Reduced infrastructure costs by 40%"
+        ],
+        image: "analytics-platform.jpg",
+        github: "https://github.com/username/analytics",
+        demo: "https://analytics.example.com"
+      }
+    ],
+    author: 'Sanjay',
+    image: '/og-image-sanjay-profile.png',
+    social: {
+      twitter: '@yourtwitterhandle',
+      linkedin: 'https://www.linkedin.com/in/pandasanjay/',
+      github: 'https://github.com/pandasanjay'
+    },
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`,
+    'gatsby-plugin-postcss',
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Sanjay - Full Stack Developer`,
+        short_name: `SP Portfolio`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#07689F`,
+        display: `standalone`,
+        icon: `static/favicon.ico`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
+        cache_busting_mode: 'query',
+        crossOrigin: `use-credentials`,
+        theme_color_in_head: true,
+        shortcuts: [
+          {
+            name: "Blog",
+            url: "/blogs",
+            description: "Read my latest blog posts"
+          },
+          {
+            name: "Portfolio",
+            url: "/works",
+            description: "View my projects"
+          }
+        ]
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: ['/works/*', '/blogs/*', '/contact/'],
+        workboxConfig: {
+          runtimeCaching: [
+            {
+              urlPattern: /(\.js$|\.css$|static\/)/,
+              handler: `CacheFirst`,
+            },
+            {
+              urlPattern: /^https?:.*\/page-data\/.*\.json/,
+              handler: `NetworkFirst`,
+            },
+            {
+              urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff)/,
+              handler: `CacheFirst`,
+            },
+          ],
+        },
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blogs`,
+        path: `${__dirname}/src/pages/blogs/`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -99,34 +237,75 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
-    `gatsby-transformer-remark`,
     {
-      resolve: `gatsby-plugin-sass`,
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/static/`,
+      },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-transformer-remark`,
       options: {
-        name: `Sanjay's Portfolio`,
-        short_name: `SP`,
-        start_url: `/`,
-        background_color: `#f7f0eb`,
-        theme_color: `#07689F`,
-        display: `standalone`,
-        icon: `static/favicon.ico`, // This path is relative to the root of the site.
-        include_favicon: true, // Include favicon
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+              linkImagesToOriginal: false,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+            },
+          },
+        ],
       },
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
     },
     {
       resolve: `gatsby-plugin-gtag`,
       options: {
         trackingId: "UA-136961245-1",
-        // Puts tracking script in the head instead of the body
         head: false,
-        // enable ip anonymization
         anonymize: true,
       },
     },
-    `gatsby-plugin-sitemap`,
-    "gatsby-plugin-robots-txt",
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://sanjaypanda.com',
+        sitemap: 'https://sanjaypanda.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        excludes: [`/404/`, `/404.html`, `/offline-plugin-app-shell-fallback/`],
+        createLinkInHead: true,
+      }
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`, `avif`],
+          placeholder: `blurred`,
+          quality: 80,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+        },
+      },
+    },
   ],
 }

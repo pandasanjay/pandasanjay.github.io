@@ -1,0 +1,63 @@
+@use "sass:color";
+@use "sass:map";
+
+// Import Bootstrap core files in correct order
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/variables";
+
+// Base values
+$spacer: 1rem !default;
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+
+// Override the problematic variable before Bootstrap processes it
+$light-bg-subtle: color.mix($gray-100, $white, 50%) !default;
+
+// Spacers override
+$spacers: () !default;
+$spacers: map.deep-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3)
+  ),
+  $spacers
+);
+
+// Sizes override
+$sizes: () !default;
+$sizes: map.deep-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+// Theme colors
+$primary: #007bff !default;
+$secondary: #6c757d !default;
+$success: #28a745 !default;
+$info: #17a2b8 !default;
+$warning: #ffc107 !default;
+$danger: #dc3545 !default;
+$light: #f8f9fa !default;
+$dark: #343a40 !default;
+
+// Define grays
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
