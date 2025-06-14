@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import Layout from '../components/layout';
-import PortfolioSideBar from '../components/PortfolioSideBar';
-import SkillsSideBar from '../components/SkillsSideBar';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
 import SEO from '../components/seo';
+import siteConfig from '../config/siteConfig';
+
+// Import styles
+import '../styles/global.scss';
+import '../styles/tailwind.css';
 
 const ProjectsPage = () => {
   const [filter, setFilter] = useState('all');
+  
+  useEffect(() => {
+    // Add dark-bg-pattern class to body to match main site design
+    document.body.classList.add('dark-bg-pattern', 'text-slate-300', 'antialiased');
+    
+    return () => {
+      document.body.classList.remove('dark-bg-pattern', 'text-slate-300', 'antialiased');
+    };
+  }, []);
   
   const data = useStaticQuery(graphql`
     query {
@@ -35,71 +48,88 @@ const ProjectsPage = () => {
   const createSlug = (title) => title.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <Layout>
+    <>
       <SEO 
         title="My Work" 
         description="Portfolio of projects and case studies in full-stack development, data engineering, and cloud architecture"
         keywords={['portfolio', 'projects', 'case studies', 'data pipeline', 'full stack']}
       />
-      <div className="flex flex-col lg:flex-row">
-        <PortfolioSideBar />
-        <div className="w-full lg:w-2/3 mx-auto p-4">
-          <div className="bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden mb-6">
-            <div className="p-6">
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">My Work</h1>
-              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6">
+      <Header />
+      <main>
+        <section className="relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden min-h-screen">
+          {/* Decorative elements matching the main site */}
+          <div className="absolute top-20 right-0 w-64 h-64 bg-accent/10 rounded-full filter blur-3xl opacity-70 animate-blob"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-100 dark:bg-blue-900/20 rounded-full filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+          
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            {/* Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+                My Work
+              </h1>
+              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 Explore my projects and case studies in full-stack development, data engineering, and cloud architecture.
               </p>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                <button 
-                  className={`px-4 py-2 rounded-md transition-colors ${
-                    filter === 'all' 
-                      ? 'bg-accent text-white' 
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600'
-                  }`}
-                  onClick={() => setFilter('all')}
-                >
-                  All Projects
-                </button>
-                <button 
-                  className={`px-4 py-2 rounded-md transition-colors ${
-                    filter === 'data engineering' 
-                      ? 'bg-accent text-white' 
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600'
-                  }`}
-                  onClick={() => setFilter('data engineering')}
-                >
-                  Data Engineering
-                </button>
-                <button 
-                  className={`px-4 py-2 rounded-md transition-colors ${
-                    filter === 'full stack' 
-                      ? 'bg-accent text-white' 
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600'
-                  }`}
-                  onClick={() => setFilter('full stack')}
-                >
-                  Full Stack
-                </button>
-              </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredProjects.map((project, index) => (
-              <div key={index}>
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+              <button 
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                  filter === 'all' 
+                    ? 'bg-accent text-white shadow-lg transform hover:-translate-y-1' 
+                    : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                }`}
+                onClick={() => setFilter('all')}
+              >
+                All Projects ({projects.length})
+              </button>
+              <button 
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                  filter === 'data engineering' 
+                    ? 'bg-accent text-white shadow-lg transform hover:-translate-y-1' 
+                    : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                }`}
+                onClick={() => setFilter('data engineering')}
+              >
+                Data Engineering ({projects.filter(p => p.category.toLowerCase() === 'data engineering').length})
+              </button>
+              <button 
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                  filter === 'full stack' 
+                    ? 'bg-accent text-white shadow-lg transform hover:-translate-y-1' 
+                    : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                }`}
+                onClick={() => setFilter('full stack')}
+              >
+                Full Stack ({projects.filter(p => p.category.toLowerCase() === 'full stack').length})
+              </button>
+            </div>
+
+            {/* Projects Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project, index) => (
                 <ProjectCard 
+                  key={index}
                   project={project} 
                   slug={createSlug(project.title)}
                 />
+              ))}
+            </div>
+
+            {/* No projects message */}
+            {filteredProjects.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-xl text-slate-600 dark:text-slate-400">
+                  No projects found in the "{filter}" category.
+                </p>
               </div>
-            ))}
+            )}
           </div>
-        </div>
-        <SkillsSideBar />
-      </div>
-    </Layout>
+        </section>
+      </main>
+      <Footer data={siteConfig.footer} />
+    </>
   );
 };
 

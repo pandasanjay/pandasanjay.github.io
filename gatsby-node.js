@@ -134,7 +134,10 @@ exports.createPages = ({ graphql, actions }) => {
           })
         })
 
+        // Collect all unique tags from posts
         const tagPosts = result.data.allMarkdownRemark?.edges || [];
+        const allTags = new Set();
+        
         tagPosts.forEach(({ node }) => {
           // Ensure tags is treated as an array, even if it's a single string or null/undefined
           const tags = Array.isArray(node.frontmatter.tags) 
@@ -142,19 +145,23 @@ exports.createPages = ({ graphql, actions }) => {
             : (node.frontmatter.tags || "").split(",").map(t => t.trim()).filter(Boolean);
 
           tags.forEach((tag) => {
-            // Check if tag is valid before creating page
             if (tag) {
-              const tagPath = tag.toLowerCase().replace(/\s+/g, '-'); // Create a URL-friendly path
-              createPage({
-                path: `tags/${tagPath}`,
-                component: path.resolve(`./src/templates/tags-list-post.jsx`),
-                context: {
-                  tag: tag, // Pass the actual tag string
-                },
-              })
+              allTags.add(tag);
             }
-          })
-        })
+          });
+        });
+
+        // Create pages for unique tags only
+        allTags.forEach((tag) => {
+          const tagPath = tag.toLowerCase().replace(/\s+/g, '-'); // Create a URL-friendly path
+          createPage({
+            path: `tags/${tagPath}`,
+            component: path.resolve(`./src/templates/tags-list-post.jsx`),
+            context: {
+              tag: tag, // Pass the actual tag string
+            },
+          });
+        });
       })
     )
   })

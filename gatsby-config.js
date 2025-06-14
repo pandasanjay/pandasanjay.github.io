@@ -290,29 +290,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        query: `
-        {
-          site {
-            siteMetadata {
-              siteUrl
-            }
-          }
-          allSitePage {
-            nodes {
-              path
-            }
-          }
-        }
-        `,
-        resolveSiteUrl: ({site}) => site.siteMetadata.siteUrl,
-        serialize: ({site, allSitePage}) =>
-          allSitePage.nodes.map(node => {
-            return {
-              url: `${site.siteMetadata.siteUrl}${node.path}`,
-              changefreq: `weekly`,
-              priority: node.path === '/' ? 1.0 : 0.7,
-            }
-          })
+        output: `/sitemap.xml`,
+        excludes: [`/404/`, `/404.html`, `/offline-plugin-app-shell-fallback/`],
+        createLinkInHead: true,
       }
     },
     {
