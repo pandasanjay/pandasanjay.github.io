@@ -15,7 +15,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       tags: [String]
       description: String
       subtitle: String
-      auther: String
+      author: String
       readtime: String
       published: Boolean
     }
