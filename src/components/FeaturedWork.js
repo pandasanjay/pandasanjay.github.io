@@ -11,9 +11,9 @@ const FeaturedWork = ({ data }) => {
         {/* Title color */}
         <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12 md:mb-16">{data.title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.projects.map((project, index) => (
+          {data.projects.map((project) => (
             // Card background, shadow, border - improved light mode shadows and borders
-            <div key={index} className="relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden group transition-all duration-300 hover:scale-[1.03] shadow-md dark:shadow-slate-800/50 hover:shadow-lg hover:shadow-slate-300/50 dark:hover:shadow-accent/20 border border-slate-200 dark:border-slate-800">
+            <div key={project.id} className="relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden group transition-all duration-300 hover:scale-[1.03] shadow-md dark:shadow-slate-800/50 hover:shadow-lg hover:shadow-slate-300/50 dark:hover:shadow-accent/20 border border-slate-200 dark:border-slate-800">
               <div className="aspect-w-16 aspect-h-9">
                 <img 
                   src={project.image} 
