@@ -55,9 +55,9 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            allMarkdownRemark(
+            posts: allMarkdownRemark(
               sort: { fields: [frontmatter___date], order: DESC }
-              filter: { frontmatter: { published: { ne: false } } } # <-- Add this filter
+              filter: { frontmatter: { published: { ne: false } } }
               limit: 1000
             ) {
               edges {
@@ -69,12 +69,12 @@ exports.createPages = ({ graphql, actions }) => {
                     title
                     date
                     tags
-                    published # Query published status if needed elsewhere, though not strictly necessary for the filter
+                    published
                   }
                 }
               }
             }
-            allMarkdownRemark {
+            allPosts: allMarkdownRemark {
               edges {
                 node {
                   fields {
@@ -130,7 +130,7 @@ exports.createPages = ({ graphql, actions }) => {
           })
         })
 
-        const posts = result.data.allMarkdownRemark?.edges || [];
+        const posts = result.data.posts?.edges || [];
         posts.forEach(({ node }, index) => {
           const previous = index === posts.length - 1 ? null : posts[index + 1].node
           const next = index === 0 ? null : posts[index - 1].node
@@ -147,7 +147,7 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // Collect all unique tags from posts
-        const tagPosts = result.data.allMarkdownRemark?.edges || [];
+        const tagPosts = result.data.allPosts?.edges || [];
         const allTags = new Set();
         
         tagPosts.forEach(({ node }) => {
