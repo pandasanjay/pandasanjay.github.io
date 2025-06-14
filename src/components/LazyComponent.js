@@ -1,20 +1,8 @@
-import React, { Suspense } from 'react';
-import ErrorBoundary from './ErrorBoundary';
+import React from 'react';
 
-const LoadingFallback = () => (
-  <div className="text-center p-4">
-    <div className="spinner-border text-primary" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-  </div>
-);
-
-const LazyComponent = ({ children }) => (
-  <ErrorBoundary>
-    <Suspense fallback={<LoadingFallback />}>
-      {children}
-    </Suspense>
-  </ErrorBoundary>
-);
+// Simple wrapper component that just renders its children directly
+const LazyComponent = ({ children }) => {
+  return children;
+};
 
 export default LazyComponent;

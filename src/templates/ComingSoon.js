@@ -8,7 +8,7 @@ import { Link } from 'gatsby';
 const ComingSoon = ({ pageContext }) => {
     return (
         <Layout>
-            <SEO title="Not Found" keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
+            <SEO title="Not Found" keywords={[`Sanjay`, `Fullstack developer`, `react`, `node`]} />
             <div className="flex flex-col lg:flex-row">
                 <PortfolioSideBar />
                 <div className="w-full lg:w-2/3 mx-auto p-4">

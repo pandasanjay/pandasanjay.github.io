@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby'; // Import graphql
 import siteConfig from '../config/siteConfig';
 import Layout from '../components/layout';
@@ -7,9 +6,9 @@ import SEO from '../components/seo';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import MissionSection from '../components/MissionSection';
-import FocusAreas from '../components/FocusAreas';
-import FeaturedWork from '../components/FeaturedWork';
+// Focus Areas and Featured Work imports removed but components kept
 import BlogSection from '../components/BlogSection';
+import YouTubeSection from '../components/youtube/YouTubeSection';
 import ConnectSection from '../components/ConnectSection';
 import Footer from '../components/Footer';
 import { initFadeInSections } from '../utils/animations';
@@ -38,20 +37,14 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <Helmet>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </Helmet>
-      <SEO title="Sanjay Panda | Developer Advocate" 
-           keywords={[`Sanjay Panda`, `Developer Advocate`, `AI Enthusiast`, `Content Creator`]} />
+      <SEO title="Sanjay | Developer Advocate" 
+           keywords={[`Sanjay`, `Developer Advocate`, `AI Enthusiast`, `Content Creator`]} />
       <Header />
       <main>
         <HeroSection data={siteConfig.heroSection} />
         <MissionSection data={siteConfig.missionSection} />
-        <FocusAreas data={siteConfig.focusAreas} />
-        <FeaturedWork data={siteConfig.featuredWork} />
-        {/* Pass fetched posts to BlogSection */}
+        {/* Reordered to show YouTube section before Blog section */}
+        <YouTubeSection />
         <BlogSection posts={latestPosts} title={siteConfig.blogSection.title} ctaText={siteConfig.blogSection.ctaText} ctaLink={siteConfig.blogSection.ctaLink} />
         <ConnectSection data={siteConfig.connectSection} />
       </main>
@@ -61,6 +54,16 @@ const IndexPage = ({ data }) => {
 };
 
 export default IndexPage;
+
+// Export Head function for Gatsby 5's built-in head support
+export const Head = () => (
+  <>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="/theme-toggle.js" type="text/javascript" />
+  </>
+);
 
 // Add GraphQL query to fetch latest 3 blog posts
 export const pageQuery = graphql`
@@ -79,9 +82,6 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 100)
           fields {
             slug
-            readingTime {
-              text
-            }
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")

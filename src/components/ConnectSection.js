@@ -1,7 +1,10 @@
 import React from 'react';
 import siteConfig from '../config/siteConfig';
+import { useTheme } from '../context/ThemeContext'; // Import useTheme
 
 const ConnectSection = ({ data }) => {
+  const { theme } = useTheme(); // Get theme context
+
   // Helper function to render social icons
   const renderSocialIcon = (iconName) => {
     switch (iconName) {
@@ -35,27 +38,33 @@ const ConnectSection = ({ data }) => {
   };
 
   return (
-    <section id="connect" className="py-16 md:py-20 lg:py-24 bg-slate-950 fade-in-section">
+    // Section background
+    <section id="connect" className="py-16 md:py-20 lg:py-24 bg-slate-100 dark:bg-slate-950 fade-in-section transition-colors duration-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">{data.title}</h2>
-        <p className="text-lg text-slate-300 mb-8">
+        {/* Title color */}
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{data.title}</h2>
+        {/* Description color */}
+        <p className="text-lg text-slate-700 dark:text-slate-300 mb-8">
           {data.description}
         </p>
-        <div className="flex justify-center items-center space-x-6 mb-8 text-slate-400">
+        {/* Social icon color */}
+        <div className="flex justify-center items-center space-x-6 mb-8 text-slate-500 dark:text-slate-400">
           {siteConfig.heroSection.socialLinks.map((link, index) => (
             <a 
               key={index}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-accent transition duration-150 ease-in-out"
+              // Hover color
+              className="hover:text-accent dark:hover:text-accent transition duration-150 ease-in-out"
               title={link.name}
             >
               {renderSocialIcon(link.icon)}
             </a>
           ))}
         </div>
-        <a href={`mailto:${data.email}`} className="text-accent hover:text-accent-300 font-medium transition-colors duration-200">
+        {/* Email link color */}
+        <a href={`mailto:${data.email}`} className="text-accent hover:text-accent-600 dark:hover:text-accent-300 font-medium transition-colors duration-200">
           {data.email}
         </a>
       </div>

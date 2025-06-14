@@ -9,10 +9,10 @@ export default () => {
                 <img 
                     className="rounded-full mb-4 border-4 border-slate-300 dark:border-slate-700 mx-auto shadow-md w-32 h-32 object-cover" 
                     src={withPrefix('sanjay.jpg')} 
-                    alt="Sanjay Panda" 
+                    alt="Sanjay" 
                 />
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-4 mb-4">HELLO!</h2>
-                <p className="mb-3 text-slate-700 dark:text-slate-300">My name is <span className="font-semibold">Sanjay Panda</span> and I am a <span className="font-semibold">Full stack developer</span> from London, UK.</p>
+                <p className="mb-3 text-slate-700 dark:text-slate-300">My name is <span className="font-semibold">Sanjay</span> and I am a <span className="font-semibold">Full stack developer</span> from London, UK.</p>
                 <p className="mb-3 text-slate-700 dark:text-slate-300">Software Developer and Expert in Developing Web Application using React and NodeJs. Passionate about all things web and cloud.</p>
                 <p className="mb-3 text-slate-700 dark:text-slate-300">Feel free to <a href="mailto:contact@sanjaypanda.com" className="text-accent hover:text-accent-600">contact</a> me for any project that you might have in mind.</p>
                 <div className="social-link flex justify-center space-x-4 mt-6">

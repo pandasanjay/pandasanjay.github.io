@@ -21,10 +21,6 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
     type Fields {
       slug: String!
-      readingTime: ReadingTime
-    }
-    type ReadingTime {
-        text: String
     }
   `
   createTypes(typeDefs)
@@ -68,9 +64,6 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   fields {
                     slug
-                    readingTime {
-                      text
-                    }
                   }
                   frontmatter {
                     title

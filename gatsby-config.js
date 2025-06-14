@@ -158,7 +158,7 @@ module.exports = {
         demo: "https://analytics.example.com"
       }
     ],
-    author: 'Sanjay Panda',
+    author: 'Sanjay',
     image: '/og-image-sanjay-profile.png',
     social: {
       twitter: '@yourtwitterhandle',
@@ -168,14 +168,13 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-postcss',
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Sanjay Panda - Full Stack Developer`,
+        name: `Sanjay - Full Stack Developer`,
         short_name: `SP Portfolio`,
         start_url: `/`,
         background_color: `#f7f0eb`,
@@ -266,7 +265,6 @@ module.exports = {
               noInlineHighlight: false,
             },
           },
-          `gatsby-remark-reading-time`,
         ],
       },
     },

@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Apply Inter font globally */
+/* Apply Inter font globally and set default light theme background */
 body {
   font-family: 'Inter', sans-serif;
+  /* Default text color removed, let prose/components handle it */
+  @apply bg-white transition-colors duration-200;
+}
+
+/* Light mode styles */
+html:not(.dark) body {
+  background-color: #ffffff;
+  color: #334155; /* slate-700 */
 }
 
 /* Dark background pattern */
@@ -20,6 +28,13 @@ body.dark-bg-pattern {
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
+}
+
+/* Skip link accessibility styles */
+.skip-link {
+  @apply absolute top-0 left-0 z-50 px-4 py-2 bg-accent text-white font-medium rounded-br-md transform -translate-y-full opacity-0 transition-all duration-200 focus:translate-y-0 focus:opacity-100;
+  /* Ensure it's above all other content when focused */
+  z-index: 9999;
 }
 
 /* Accent color variables for consistent theme */

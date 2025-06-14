@@ -7,10 +7,9 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
 
-function SEO({ description, lang, meta, keywords, title, image, type = 'website' }) {
+function SEO({ description = '', lang = 'en', meta = [], keywords = [], title, image, type = 'website' }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -49,77 +48,31 @@ function SEO({ description, lang, meta, keywords, title, image, type = 'website'
   }
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: type,
-        },
-        {
-          property: `og:image`,
-          content: metaImage,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.social.twitter || site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `twitter:image`,
-          content: metaImage,
-        }
-      ]
-        .concat(
-          keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
-            : []
-        )
-        .concat(meta)}
-    >
+    <>
+      <title>{title} | {site.siteMetadata.title}</title>
+      <html lang={lang} />
+      <meta name="description" content={metaDescription} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:type" content={type} />
+      <meta property="og:image" content={metaImage} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={site.siteMetadata.social.twitter || site.siteMetadata.author} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={metaImage} />
+      {keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(', ')} />
+      )}
+      {meta.map((metaItem, index) => (
+        <meta key={index} {...metaItem} />
+      ))}
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>
       <link rel="canonical" href={`${site.siteMetadata.siteUrl}${withPrefix('/')}`} />
-    </Helmet>
+    </>
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  keywords: [],
-  description: ``,
 }
 
 SEO.propTypes = {

@@ -21,11 +21,13 @@ $margin-top-for-other-fields: 1.56em;
 
     blockquote {
         padding-left: 23px;
-        box-shadow: inset 3px 0 0 0 rgba(0, 0, 0, 0.84);
+        box-shadow: inset 3px 0 0 0 currentColor;
+        opacity: 0.8;
     }
 
     img {
         width: 100%;
+        border-radius: 0.5rem;
     }
 
     ol {
@@ -33,4 +35,28 @@ $margin-top-for-other-fields: 1.56em;
             margin-top: $margin-top-for-other-fields;
         }
     }
+    
+    // Code blocks styling enhancements
+    pre {
+        border-radius: 0.5rem;
+        margin: 1.5em 0;
+        
+        code {
+            font-family: 'Fira Code', monospace;
+        }
+    }
+    
+    // Table styling
+    table {
+        margin: 1.5em 0;
+        width: 100%;
+        border-collapse: collapse;
+        
+        th, td {
+            padding: 0.75em;
+            border-bottom-width: 1px;
+        }
+    }
 }
+
+/* Removed the :global(.dark) and html:not(.dark) blocks */

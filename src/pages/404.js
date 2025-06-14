@@ -8,7 +8,7 @@ import { Link } from 'gatsby';
 const NotFoundPage = () => {
     return (
         <Layout>
-            <SEO title="404: Not Found" keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`, `404`]} />
+            <SEO title="404: Not Found" keywords={[`Sanjay`, `Fullstack developer`, `react`, `node`, `404`]} />
             <div className="flex flex-col lg:flex-row min-h-[calc(100vh-var(--header-height))] "> {/* Ensure full height */}
                 <PortfolioSideBar />
                 <div className="w-full lg:w-2/3 mx-auto p-4 flex items-center justify-center"> {/* Center content */}

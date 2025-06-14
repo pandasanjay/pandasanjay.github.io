@@ -7,7 +7,7 @@ import ContactForm from '../components/ContactForm'
 
 const ContactPage = () => (
   <Layout>
-    <SEO title="Contact Sanjay Panda" keywords={[`Sanjay Panda`,`contact`, `Fullstack developer`]} />
+    <SEO title="Contact Sanjay" keywords={[`Sanjay`,`contact`, `Fullstack developer`]} />
     <div className="flex flex-col lg:flex-row">
       <PortfolioSideBar />
       <div className="w-full lg:w-2/3 mx-auto p-4">

@@ -5,13 +5,14 @@ import PortfolioSideBar from '../components/PortfolioSideBar';
 import SkillsSideBar from '../components/SkillsSideBar';
 import PostLists from "../components/ListPosts";
 import SEO from '../components/seo';
+import { calculateReadingTime } from '../utils/readingTime';
 
 const TagsListPost = ({ data, pageContext }) => {
   const postList = data.allMarkdownRemark.edges;
 
   return (
     <Layout>
-      <SEO title={`Posts tagged with ${pageContext.tag}`} keywords={[`Sanjay Panda`, `Fullstack developer`, `react`, `node`]} />
+      <SEO title={`Posts tagged with ${pageContext.tag}`} keywords={[`Sanjay`, `Fullstack developer`, `react`, `node`]} />
       <div className="flex flex-col lg:flex-row">
         <PortfolioSideBar />
         <div className="w-full lg:w-2/3 mx-auto p-4">
@@ -42,9 +43,6 @@ export const query = graphql`
           }
           fields {
             slug
-            readingTime {
-              text
-            }
           }
           excerpt
           id
