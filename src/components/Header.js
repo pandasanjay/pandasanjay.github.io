@@ -71,7 +71,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link to="/" className="text-xl font-bold text-slate-900 dark:text-white hover:text-accent dark:hover:text-accent transition duration-150 ease-in-out">
-              Sanjay K. Panda
+              Sanjay Panda
             </Link>
           </div>
           
