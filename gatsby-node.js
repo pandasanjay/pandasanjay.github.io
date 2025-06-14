@@ -74,6 +74,18 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            allMarkdownRemark {
+              edges {
+                node {
+                  fields {
+                    slug
+                  }
+                  frontmatter {
+                    tags
+                  }
+                }
+              }
+            }
           }
         `
       ).then(result => {
