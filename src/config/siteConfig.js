@@ -1,8 +1,8 @@
 const siteConfig = {
   heroSection: {
-    headline: "Building Software Engineers Tomorrow",
-    tagline: "From Lines of Code to Real-World Impact: Unleashing Your Full Potential",
-    descriptionBase: "Leveraging {years}+ years of engineering experience to help developers evolve from writing code to building software that matters.",
+    headline: "AI-Powered Programming Guidance",
+    tagline: "Empowering Self-Taught Developers with AI Tools and Best Practices",
+    descriptionBase: "Leveraging {years}+ years of engineering experience to guide self-taught programmers in using AI tools effectively while building reliable, scalable software.",
     careerStartYear: 2013,
     profileImage: "/sanjay.jpg",
     socialLinks: [
@@ -24,27 +24,27 @@ const siteConfig = {
     ]
   },
   missionSection: {
-    title: "The Journey from Code to Software",
+    title: "AI-Driven Guidance for Self-Taught Programmers",
     paragraphs: [
-      "Many self-taught developers can write code, but building software that scales, performs, and serves real users requires a different mindset. I share insights on architecture, production practices, and the professional skills that transform coders into software engineers."
+      "AI is making programming accessible to everyone, but building reliable, scalable software still requires the right skills. I guide self-taught programmers in leveraging AI tools to deliver production-quality solutions."
     ]
   },
   focusAreas: {
     title: "What I Share",
     pillars: [
       {
-        title: "Beyond Code",
-        description: "Moving from scripts and tutorials to production-ready applications. System design, architecture patterns, and thinking like a software engineer.",
+        title: "AI-Assisted Development",
+        description: "How to effectively use AI tools like GitHub Copilot, ChatGPT, and code assistants to accelerate development while maintaining code quality and understanding.",
         icon: "code"
       },
       {
-        title: "Real-World Skills",
-        description: "Testing, deployment, monitoring, and maintenance. The skills that bridge the gap between 'it works on my machine' and production software.",
+        title: "Production-Ready Practices",
+        description: "Essential skills for self-taught developers: testing, deployment, monitoring, and the practices that ensure your AI-assisted code works reliably in production.",
         icon: "cog"
       },
       {
-        title: "Professional Growth",
-        description: "Career insights, technical decision making, and the soft skills that help self-taught developers thrive in professional environments.",
+        title: "Smart Learning Paths",
+        description: "Strategic guidance for self-taught programmers on when to rely on AI, when to learn fundamentals, and how to build both coding skills and software engineering mindset.",
         icon: "trending-up"
       }
     ]
@@ -59,7 +59,7 @@ const siteConfig = {
   },
   youtubeSection: {
     title: "Learn from My Videos",
-    description: "Practical tutorials and insights to help you evolve from writing code to building software",
+    description: "Practical tutorials on leveraging AI tools effectively and building production-quality software as a self-taught programmer",
     channelId: "UCtJw0kfXaXv-mJ61CJ-CCvA",
     channelHandle: "@sanjaypanda_",
     channelUrl: "https://www.youtube.com/@sanjaypanda_",
